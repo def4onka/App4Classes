@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @document.user
+%p
+  %b Comment:
+  = @document.comment
+%p
+  %b Material:
+  = @document.material_id
+
+= link_to 'Edit', edit_document_path(@document)
+\|
+= link_to 'Back', documents_path

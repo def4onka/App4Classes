@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Document:
+  = @section.document
+%p
+  %b Source:
+  = @section.source
+%p
+  %b Position:
+  = @section.position
+
+= link_to 'Edit', edit_section_path(@section)
+\|
+= link_to 'Back', sections_path

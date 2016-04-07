@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  document_id: 
+  user_id: 
+  comment: MyString
+  groups: MyString
+  last_open_slide: 1
+  auto_open: false
+
+two:
+  document_id: 
+  user_id: 
+  comment: MyString
+  groups: MyString
+  last_open_slide: 1
+  auto_open: false

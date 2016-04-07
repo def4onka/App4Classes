@@ -1,0 +1,22 @@
+= form_for @user do |f|
+  =error_messages_for(@user)
+  .form-group
+    = f.label :role
+    = f.select :role, options_for_select([['Студент',0],['Преподаватель',1],['Администратор',2]], selected: @user.role),{}, class: 'form-control'
+  .form-group
+    =f.label :login
+    =f.text_field :login, class: 'form-control'
+  .form-group
+    = f.label :full_name
+    = f.text_field :full_name, class: 'form-control'
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: 'form-control'
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: 'form-control'
+  .form-group
+    = f.label :groups
+    = f.text_field :groups, class: 'form-control'
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

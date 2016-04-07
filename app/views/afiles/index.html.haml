@@ -1,0 +1,25 @@
+%h1 Listing afiles
+
+%table
+  %thead
+    %tr
+      %th Document
+      %th Source
+      %th Path
+      %th
+      %th
+      %th
+
+  %tbody
+    - @afiles.each do |afile|
+      %tr
+        %td= afile.document
+        %td= afile.source
+        %td= afile.path
+        %td= link_to 'Show', afile
+        %td= link_to 'Edit', edit_afile_path(afile)
+        %td= link_to 'Destroy', afile, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Afile', new_afile_path

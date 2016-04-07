@@ -1,0 +1,14 @@
+%p
+  %b Login:
+  = @user.login
+%p
+  %b Full name:
+  = @user.full_name
+%p
+  %b Role:
+  = @user.role
+%p
+  %b Groups:
+  = @user.groups
+
+= link_to 'Edit', edit_user_path(@user)

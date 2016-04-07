@@ -1,0 +1,32 @@
+%h1 Listing presentations
+
+%table
+  %thead
+    %tr
+      %th Document
+      %th User
+      %th Comment
+      %th Groups
+      %th Last open slide
+      %th Auto open
+      %th
+      %th
+      %th
+
+  =link_to 'Добавить новую', new_document_path, class: 'btn btn-default'
+  %tbody
+    - @presentations.each do |presentation|
+      %tr
+        %td= presentation.document
+        %td= presentation.user
+        %td= presentation.comment
+        %td= presentation.groups
+        %td= presentation.last_open_slide
+        %td= presentation.auto_open
+        %td= link_to 'Show', presentation
+        %td= link_to 'Edit', edit_presentation_path(presentation)
+        %td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Presentation', new_presentation_path

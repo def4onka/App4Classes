@@ -1,0 +1,11 @@
+.page-header
+  %h1 Вход
+=form_tag login_path do
+  .form-group
+    =label_tag :login, User.human_attribute_name(:login)
+    =text_field_tag :login, @login, class: 'form-control'
+  .form-group
+    =label_tag :password, User.human_attribute_name(:password)
+    =password_field_tag :password, nil,  class: 'form-control'
+  .actions
+    =submit_tag 'Войти', class: 'btn btn-primary'

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Document:
+  = @afile.document
+%p
+  %b Source:
+  = @afile.source
+%p
+  %b Path:
+  = @afile.path
+
+= link_to 'Edit', edit_afile_path(@afile)
+\|
+= link_to 'Back', afiles_path

@@ -1,0 +1,19 @@
+= form_for @afile do |f|
+  - if @afile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@afile.errors.count, "error")} prohibited this afile from being saved:"
+      %ul
+        - @afile.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :document
+    = f.text_field :document
+  .field
+    = f.label :source
+    = f.file_field :source
+  .field
+    = f.label :path
+    = f.text_field :path
+  .actions
+    = f.submit 'Save'

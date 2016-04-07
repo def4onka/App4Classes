@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Document:
+  = @presentation.document
+%p
+  %b User:
+  = @presentation.user
+%p
+  %b Comment:
+  = @presentation.comment
+%p
+  %b Groups:
+  = @presentation.groups
+%p
+  %b Last open slide:
+  = @presentation.last_open_slide
+%p
+  %b Auto open:
+  = @presentation.auto_open
+
+= link_to 'Edit', edit_presentation_path(@presentation)
+\|
+= link_to 'Back', presentations_path

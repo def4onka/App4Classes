@@ -1,0 +1,7 @@
+%h1 Listing users
+
+.list-group
+  -@users.each do |user|
+    =link_to user.full_name, user, class: 'list-group-item'
+
+=paginate @users
