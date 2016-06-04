@@ -1,6 +1,6 @@
 %h1 Listing sections
 
-%table
+%table.table
   %thead
     %tr
       %th Document
@@ -13,7 +13,7 @@
   %tbody
     - @sections.each do |section|
       %tr
-        %td= section.document
+        %td= section.document.id
         %td= section.source
         %td= section.position
         %td= link_to 'Show', section

@@ -1,6 +1,9 @@
-%h1 Listing presentations
+%h1
+  =label_tag 'Listing presentations'
+  -# -if @current_user.prepod?
+  =link_to image_tag('icon.png',size: "36x36"), new_document_path, class: 'col-md-offset-1'
 
-%table
+%table.table
   %thead
     %tr
       %th Document
@@ -12,20 +15,18 @@
       %th
       %th
       %th
-
-  =link_to 'Добавить новую', new_document_path, class: 'btn btn-default'
   %tbody
     - @presentations.each do |presentation|
       %tr
-        %td= presentation.document
-        %td= presentation.user
+        %td= presentation.document.id
+        %td= presentation.user.full_name
         %td= presentation.comment
         %td= presentation.groups
         %td= presentation.last_open_slide
         %td= presentation.auto_open
-        %td= link_to 'Show', presentation
-        %td= link_to 'Edit', edit_presentation_path(presentation)
-        %td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to image_tag('computer.png',size: "16x16"), presentation_show_path(id: presentation, slide: 0, show: :show)
+        %td= link_to image_tag('drawing.png',size: "16x16"), edit_presentation_path(presentation)
+        %td= link_to image_tag('delete.png',size: "16x16"), presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

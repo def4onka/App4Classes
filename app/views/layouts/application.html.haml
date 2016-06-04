@@ -7,8 +7,12 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    %link{:href => "//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
+    %script{:src => "//code.jquery.com/jquery-1.10.2.js"}
+    %script{:src => "//code.jquery.com/ui/1.11.4/jquery-ui.js"}
   %body
-    =render 'navbar'
-    .container
-      =render 'flash_messages'
-      = yield
+    -if !params[:show]
+      =render 'navbar'
+      .container
+        =render 'flash_messages'
+    = yield

@@ -1,0 +1,14 @@
+-# .mousemove
+-#   %div Координата X
+-#   =text_field_tag 'mouseX', @room.width
+-#   %div Координата Y
+-#   =text_field_tag 'mouseY'
+%h1.draggable= @room.name
+-# .col-md-1
+  -# =image_tag "computer.png", size: "32x32", class: "computers"
+
+
+.col-md-12
+  =content_tag "section", id: "classModel", style: "width:" + @room.width.to_s+"px; height: " +@room.height.to_s+"px" do
+    -@computers.each do |machine|
+      =render 'machines/viewable_machine', machine: machine

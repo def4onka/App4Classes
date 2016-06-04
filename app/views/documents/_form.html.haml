@@ -1,22 +1,17 @@
 = form_for @document do |f|
   - if @document.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@document.errors.count, "error")} prohibited this document from being saved:"
-      %ul
-        - @document.errors.full_messages.each do |msg|
-          %li= msg
+    =error_messages_for(@document)
 
   .form-group
     =f.file_field :file
-
-  -# .field
-  -#   = f.label :user
-  -#   = f.text_field :user
+  .form-group
+    =label_tag :way
+    =f.select :way, Document::SS.map.with_index{|w,i| [w,i]},{}, class: 'form-control'
   .form-group
     =label_tag :comment
     =text_field_tag :comment, nil,class: 'form-control'
-  .field
-    =label_tag :material_id
-    =number_field_tag :material_id,nil,class: 'form-control'
+  -# .field
+  -#   =label_tag :material_id
+  -#   =number_field_tag :material_id,nil,class: 'form-control'
   .actions
-    =submit_tag 'Save', :method => :create, class: 'btn btn-default'
+    =button_tag 'Save', method: :create, class: 'btn btn-default'

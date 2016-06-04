@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329082518) do
+ActiveRecord::Schema.define(version: 20160602030632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addons", force: :cascade do |t|
+    t.integer  "document_id"
+    t.string   "source"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "addons", ["document_id"], name: "index_addons_on_document_id", using: :btree
 
   create_table "afiles", force: :cascade do |t|
     t.integer  "document_id"
@@ -26,12 +35,25 @@ ActiveRecord::Schema.define(version: 20160329082518) do
 
   add_index "afiles", ["document_id"], name: "index_afiles_on_document_id", using: :btree
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "document_id"
+    t.string   "accompanying_files_file_name"
+    t.string   "accompanying_files_content_type"
+    t.integer  "accompanying_files_file_size"
+    t.datetime "accompanying_files_updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "attachments", ["document_id"], name: "index_attachments_on_document_id", using: :btree
+
   create_table "documents", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "comment"
     t.integer  "material_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "way"
   end
 
   add_index "documents", ["user_id"], name: "index_documents_on_user_id", using: :btree
@@ -41,6 +63,17 @@ ActiveRecord::Schema.define(version: 20160329082518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "machines", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "left"
+    t.string   "top"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  add_index "machines", ["room_id"], name: "index_machines_on_room_id", using: :btree
 
   create_table "presentations", force: :cascade do |t|
     t.integer  "document_id"
@@ -55,6 +88,14 @@ ActiveRecord::Schema.define(version: 20160329082518) do
 
   add_index "presentations", ["document_id"], name: "index_presentations_on_document_id", using: :btree
   add_index "presentations", ["user_id"], name: "index_presentations_on_user_id", using: :btree
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "sections", force: :cascade do |t|
     t.integer  "document_id"
@@ -76,8 +117,11 @@ ActiveRecord::Schema.define(version: 20160329082518) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "addons", "documents"
   add_foreign_key "afiles", "documents"
+  add_foreign_key "attachments", "documents"
   add_foreign_key "documents", "users"
+  add_foreign_key "machines", "rooms"
   add_foreign_key "presentations", "documents"
   add_foreign_key "presentations", "users"
   add_foreign_key "sections", "documents"

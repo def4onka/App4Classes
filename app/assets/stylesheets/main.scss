@@ -1,7 +1,13 @@
+$btn-primary-bg: #6f177d;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 
+
 body{
+  // padding: 10px;
   padding-top: 60px;
+}
+body#pres{
+  padding-top: 0px;
 }

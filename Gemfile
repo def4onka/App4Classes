@@ -7,6 +7,10 @@ gem 'rails-i18n'
 gem 'kaminari'
 gem 'rubyzip', require: 'zip'
 require 'tempfile'
+gem 'railroady'
+gem "font-awesome-rails"
+gem 'nokogiri'
+gem 'paperclip'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

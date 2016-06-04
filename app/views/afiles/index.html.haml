@@ -13,8 +13,8 @@
   %tbody
     - @afiles.each do |afile|
       %tr
-        %td= afile.document
-        %td= afile.source
+        %td= afile.document.id
+        %td
         %td= afile.path
         %td= link_to 'Show', afile
         %td= link_to 'Edit', edit_afile_path(afile)

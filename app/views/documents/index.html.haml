@@ -1,9 +1,9 @@
 %h1 Listing documents
 
-%table
+%table.table
   %thead
     %tr
-      %th User
+      %th Document
       %th Comment
       %th Material
       %th
@@ -13,7 +13,7 @@
   %tbody
     - @documents.each do |document|
       %tr
-        %td= document.user
+        %td= document.id
         %td= document.comment
         %td= document.material_id
         %td= link_to 'Show', document

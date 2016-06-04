@@ -1,24 +1,14 @@
-%p#notice= notice
+-if @slide>0
+  =link_to presentation_show_path(:slide=>@slide-1), data: {text: "<h1>dfnkejfve</h1>"}, remote: true do
+    ='prev'
+-if !@current_user.prepod?
+  -if @slide<@presentation.last_open_slide
+    =link_to presentation_show_path(:slide=>@slide+1) do
+      ='next'
+-else
+  =link_to presentation_show_path(:slide=>@slide+1) do
+    ='next'
 
-%p
-  %b Document:
-  = @presentation.document
-%p
-  %b User:
-  = @presentation.user
-%p
-  %b Comment:
-  = @presentation.comment
-%p
-  %b Groups:
-  = @presentation.groups
-%p
-  %b Last open slide:
-  = @presentation.last_open_slide
-%p
-  %b Auto open:
-  = @presentation.auto_open
+=raw @section.source
 
-= link_to 'Edit', edit_presentation_path(@presentation)
-\|
-= link_to 'Back', presentations_path
+=link_to 'root',root_path

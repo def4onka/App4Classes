@@ -1,6 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   #attr_accessor :file
+
   # GET /documents
   # GET /documents.json
   def index
@@ -21,39 +22,24 @@ class DocumentsController < ApplicationController
   def edit
   end
 
-  # POST /documents
-  # POST /documents.json
-  # def create
-  #   @document = Document.new(document_params)
-  #
-  #   respond_to do |format|
-  #     if @document.save
-  #       format.html { redirect_to @document, notice: 'Document was successfully created.' }
-  #       format.json { render :show, status: :created, location: @document }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @document.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
   def create
     respond_to do |format|
       format.html do
-        d = Document.new(user_id: @current_user_id,
+        d = Document.new(user_id: @current_user.id.to_i,
                         comment: params[:comment],
-                         material_id: params[:material_id])
+                         material_id: params[:material_id],
+                         way: params[:document][:way])
+        puts("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+params[:comment].to_s)
         tmp = params[:document][:file].tempfile
-        puts "\naaaaaaaaaaaaaaaajaaaaaaaaaaaaaaaaaaaaaaaaaa#{tmp.size}\n"
-        puts "#{File.size(tmp)}"
+
         d.create_sections_and_afiles(tmp.path)
         tmp.close
-        if d.save
-          # p = Presentation.new(document_id: d.id, user_id: d.user_id,
-          #                      comment: d.comment, groups: [],
-          #                      last_open_slide: 0, auto_open: true)
-          # p.save(validate: false)
-          render json: {id: d.id}
+        if d.save!
+          p = Presentation.new(document_id: d.id, user_id: d.user_id,
+                               comment: d.comment, groups: [],
+                               last_open_slide: 0, auto_open: true)
+          p.save(validate: false)
+          redirect_to documents_path
         else
           render json: {error: d.errors.inspect}
         end

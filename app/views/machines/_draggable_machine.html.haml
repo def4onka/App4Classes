@@ -1,0 +1,9 @@
+-# =link_to machine, class: 'list-group-item' do
+  .media
+    .media-left=image_tag "computer.png", size: "48x48", class: 'media-object'
+    .media-body
+      %h4.media-heading=machine.name
+
+=content_tag "section", id: machine.id, draggable: true, style: "width: 80px; height: 60px;", class: "computer" do
+  =image_tag "computer.png", size: "48x48"
+  =machine.name

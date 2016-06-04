@@ -1,0 +1,4 @@
+=link_to machine_path do
+  =content_tag "section", id: machine.id, style: "left: #{machine.left}", draggable: false do
+    =image_tag "computer.png", size: "48x48"
+    =machine.name

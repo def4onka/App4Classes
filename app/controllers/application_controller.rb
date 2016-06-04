@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
   def set_current_user
     @current_user = User.where(id: session[:user_id]).first
   end
+
+  def render_error(message = 'Доступ запрещен', options = {})
+  flash[:danger] = message
+  url = options[:url] || root_path
+  redirect_to url
+end
 end

@@ -1,15 +1,26 @@
-%p#notice= notice
+-# =javascript_include_tag "reveal.js"
+-# =stylesheet_link_tag "reveal.css"
+-# -@addons.each do |addon|
+-#   =raw addon.addon
 
-%p
-  %b Document:
-  = @section.document
-%p
-  %b Source:
-  = @section.source
-%p
-  %b Position:
-  = @section.position
 
-= link_to 'Edit', edit_section_path(@section)
-\|
-= link_to 'Back', sections_path
+-if @slide>0
+  =link_to presentation_show_path(:slide=>@slide-1) do
+    =fa_icon "chevron-left"
+-if !@current_user.prepod?
+  -if @slide<@presentation.last_open_slide && @sections.size>@slide
+    =link_to presentation_show_path(:slide=>@slide+1) do
+      =fa_icon "chevron-right"
+-else
+  -if @sections.size>@slide
+    =link_to presentation_show_path(:slide=>@slide+1), remote: false do
+      =fa_icon "chevron-right"
+-if @sections.size==@slide
+  .reveal
+    =raw("<h1>The End</h1>")
+    =link_to 'Вернуться в корень', root_path
+-else
+  -# .reveal
+  -#   =raw @section.source
+  =raw @section.source
+-# =link_to 'root',root_path

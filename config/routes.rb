@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :machines
+  resources :rooms
   resources :presentations
   resources :groups
   resources :sections
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', as: :login
   post 'login' => 'sessions#create'
   get 'logout'=> 'sessions#destroy', as: :logout
+
+  get 'presentations/:id/:slide/:show' => 'presentations#show', as: :presentation_show
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

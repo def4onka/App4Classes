@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{charset: 'utf8'}
+    %meta{name: 'viewport', content: "width=device-width, initial-scale=1.0"}
+    %title App4Classes
+    -# = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    -# = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    -# = csrf_meta_tags
+  %body#pres
+    .reveal
+      .slides
+        = yield
+        -@document.addons.each do |addon|
+          =raw addon.source

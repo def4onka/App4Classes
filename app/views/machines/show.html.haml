@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Room:
+  = @machine.room
+%p
+  %b Left:
+  = @machine.left
+%p
+  %b Top:
+  = @machine.top
+%p
+  %b Name:
+  = @machine.name
+
+= link_to 'Edit', edit_machine_path(@machine)
+\|
+= link_to 'Back', machines_path

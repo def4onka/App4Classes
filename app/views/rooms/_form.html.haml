@@ -1,0 +1,19 @@
+= form_for @room do |f|
+  =error_messages_for(@room)
+  .row
+    .col-md-8
+      =content_tag "section", id: "classModel", style: "width:" + @room.width.to_s+"px; height: " +@room.height.to_s+"px" do
+        -@computers.each do |machine|
+          =render 'machines/draggable_machine', machine: machine
+    .col-md-4
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :height
+        = f.number_field :height, class: "form-control"
+      .form-group
+        = f.label :width
+        = f.number_field :width, class: "form-control"
+      .actions
+        = f.submit 'Save', class: 'btn btn-primary'
